@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/get_input_args.py
 #                                                                             
-# PROGRAMMER: RefentseMaleho
+# PROGRAMMER: Refentse Neke
 # DATE CREATED:  30/08/2026                                 
 # REVISED DATE: 
 # PURPOSE: Create a function that retrieves the following 3 command line inputs 
