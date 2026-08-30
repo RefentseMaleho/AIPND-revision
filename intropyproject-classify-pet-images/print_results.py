@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/print_results.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:
+# PROGRAMMER: Refentse Neke
+# DATE CREATED: 30/08/2026
 # REVISED DATE: 
 # PURPOSE: Create a function print_results that prints the results statistics
 #          from the results statistics dictionary (results_stats_dic). It 
@@ -62,5 +62,27 @@ def print_results(results_dic, results_stats_dic, model,
     Returns:
            None - simply printing results.
     """    
-    None
+    print("\n\n*** Results Summary for CNN Model Architecture:", model, "***")
+    print("Number of Images:", results_stats_dic['n_images'])
+    print("Number of Dog Images:", results_stats_dic['n_dogs_img'])
+    print("Number of Not-a-Dog Images:", results_stats_dic['n_notdogs_img'])
+
+    print(" ")
+    for key in results_stats_dic:
+        if key.startswith('pct'):
+            print(key, ": {:.1f}%".format(results_stats_dic[key]))
+
+    if print_incorrect_dogs and (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs'] != results_stats_dic['n_images']):
+        print("\nINCORRECT Dog/NOT Dog Assignments:")
+        for key in results_dic:
+            pet_label, classifier_label, is_match, pet_is_dog, classifier_is_dog = results_dic[key]
+            if pet_is_dog != classifier_is_dog:
+                print("Real:", pet_label, "   Classifier:", classifier_label)
+
+    if print_incorrect_breed and (results_stats_dic['n_correct_dogs'] != results_stats_dic['n_correct_breed']):
+        print("\nINCORRECT Dog Breed Assignments:")
+        for key in results_dic:
+            pet_label, classifier_label, is_match, pet_is_dog, classifier_is_dog = results_dic[key]
+            if pet_is_dog == 1 and classifier_is_dog == 1 and is_match == 0:
+                print("Real:", pet_label, "   Classifier:", classifier_label)
                 
